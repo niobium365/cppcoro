@@ -32,6 +32,8 @@ namespace cppcoro
 
 		class async_generator_promise_base
 		{
+			
+			PRINT_TEST_CTOR_DTOR;
 		public:
 
 			async_generator_promise_base() noexcept

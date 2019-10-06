@@ -19,6 +19,7 @@
 
 #include <experimental/coroutine>
 
+#include "log_h0.hpp"
 namespace cppcoro
 {
 	template<typename T>
@@ -34,6 +35,7 @@ namespace cppcoro
 
 		class shared_task_promise_base
 		{
+			//PRINT_TEST_CTOR_DTOR;
 			friend struct final_awaiter;
 
 			struct final_awaiter
@@ -172,7 +174,7 @@ namespace cppcoro
 				return true;
 			}
 
-		protected:
+		public:
 
 			bool completed_with_unhandled_exception()
 			{
@@ -421,6 +423,27 @@ namespace cppcoro
 			return awaitable{ m_coroutine };
 		}
 
+        decltype(auto) result() const
+		{
+			if (!m_coroutine)
+			{
+				throw broken_promise{};
+			}
+
+			return m_coroutine.promise().result();
+		}
+		bool valid() const noexcept
+		{
+			return bool(m_coroutine);
+		}
+		bool has_value() const noexcept
+		{
+			return valid() && is_ready() && !m_coroutine.promise().completed_with_unhandled_exception();
+		}
+		bool has_exception() const noexcept
+		{
+			return valid() && is_ready() && m_coroutine.promise().completed_with_unhandled_exception();
+		}
 		/// \brief
 		/// Returns an awaitable that will await completion of the task without
 		/// attempting to retrieve the result.
