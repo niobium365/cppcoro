@@ -181,6 +181,11 @@ namespace cppcoro
 				return m_exception != nullptr;
 			}
 
+			bool started() const noexcept
+			{
+				return m_waiters.load() != &this->m_waiters;
+			}
+
 			void rethrow_if_unhandled_exception()
 			{
 				if (m_exception != nullptr)
@@ -435,6 +440,10 @@ namespace cppcoro
 		bool valid() const noexcept
 		{
 			return bool(m_coroutine);
+		}
+		bool started() const noexcept//debug only
+		{
+			return bool(m_coroutine) && m_coroutine.promise().started();
 		}
 		bool has_value() const noexcept
 		{
