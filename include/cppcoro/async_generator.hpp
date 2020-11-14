@@ -394,6 +394,11 @@ namespace cppcoro
 				return detail::async_generator_begin_operation<T>{ nullptr };
 			}
 
+			if (m_coroutine.done())
+			{
+				return detail::async_generator_begin_operation<T>{ nullptr };
+			}
+
 			return detail::async_generator_begin_operation<T>{ m_coroutine };
 		}
 
