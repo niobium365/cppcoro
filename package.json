@@ -1,6 +1,6 @@
 {
-  "name": "jd_cppcoro",
-  "version": "1.0.0",
+  "name": "@jd/cppcoro",
+  "version": "1.0.1",
   "description": "jd_cppcoro",
   "author": "Jason Du"
 }
