@@ -7,6 +7,9 @@
 
 #include <cppcoro/config.hpp>
 
+# define CPPCORO_OS_WINNT 0
+
+
 #if CPPCORO_OS_LINUX || (CPPCORO_OS_WINNT >= 0x0602)
 # include <atomic>
 # include <cstdint>
