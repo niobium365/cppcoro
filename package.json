@@ -1,6 +1,19 @@
 {
-  "name": "@jd/cppcoro",
-  "version": "1.0.1",
-  "description": "jd_cppcoro",
-  "author": "Jason Du"
+	"name": "@jd/cppcoro",
+	"version": "1.0.10",
+	"description": "jd_cppcoro",
+	"engines": {
+		"node": ">= 0.10.12"
+	},
+	"optionalDependencies": {
+		"@jd/lazy_make": "c:/ws/bbbb/lazy_make"
+	},
+	"dependencies": {
+		"@jd/lazy_make": "^1.0.22"
+	},
+	"scripts": {
+		"prepublishOnly": "jdpub",
+		"postpublish": "jdpub"
+	},
+	"author": "Jason Du"
 }

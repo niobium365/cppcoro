@@ -1,0 +1,22 @@
+set(CMAKE_SYSTEM_NAME Linux)
+#set(CMAKE_SYSTEM_PROCESSOR arm)
+#set test-project path (NOTE: edit this parameter based on test-#project path in your pc )
+#set(test-project_path YOUR_TEST_PROJECT_PATH)
+#set toolchain path
+set(sysroot_target C:/Users/jdu/Downloads/android-ndk-r21b-windows-x86_64/android-ndk-r21b/sysroot)
+set(tools C:/Users/jdu/Downloads/android-ndk-r21b-windows-x86_64/android-ndk-r21b/toolchains/llvm/prebuilt/windows-x86_64/bin)
+#set(tools c:/llvm/bin)
+set(CMAKE_C_COMPILER ${tools}/clang.exe)
+set(CMAKE_CXX_COMPILER ${tools}/clang++.exe)
+set(CMAKE_SYSROOT ${sysroot_target})
+SET(CMAKE_CXX_FLAGS "--sysroot=${sysroot_target}")
+SET(CMAKE_C_FLAGS ${CMAKE_CXX_FLAGS})
+
+#SET(CMAKE_LINKER c:/cygwin64/bin/ld)
+#SET(CMAKE_C_LINK_EXECUTABLE "<CMAKE_LINKER> <FLAGS> <CMAKE_CXX_LINK_FLAGS> <LINK_FLAGS> <OBJECTS> -o <TARGET> <LINK_LIBRARIES>")
+
+#SET(CMAKE_EXE_LINKER_FLAGS "-Bc:/cygwin64/bin --target=x86_64-pc-windows-cygnus --sysroot=${sysroot_target} -lcygwin -ladvapi32 -lshell32 -luser32 -lkernel32")
+set(CMAKE_FIND_ROOT_PATH_MODE_PROGRAM NEVER)
+set(CMAKE_FIND_ROOT_PATH_MODE_LIBRARY ONLY)
+set(CMAKE_FIND_ROOT_PATH_MODE_INCLUDE ONLY)
+set(CMAKE_FIND_ROOT_PATH_MODE_PACKAGE ONLY)
