@@ -1,4 +1,4 @@
-cmake_minimum_required(VERSION 3.19.1)
+cmake_minimum_required(VERSION 3.16.1)
 
 if(UNIX AND NOT APPLE)
   set(LINUX TRUE)
@@ -25,7 +25,10 @@ endif()
 set(CMAKE_RUNTIME_OUTPUT_DIRECTORY
     ${CMAKE_SOURCE_DIR}/${env.WSL_DISTRO_NAME}/build/bin)
 
-set(CMAKE_TOOLCHAIN_FILE ${CMAKE_SOURCE_DIR}/cross.cmake)
+set(VS_NdkRoot
+    $ENV{CMAKE_TOOLCHAIN_DIR})
+
+set(CMAKE_TOOLCHAIN_FILE ${VS_NdkRoot}/cross.cmake)
 
 if(AT_BIT EQUAL 64)
   add_compile_options(-m64 --target=aarch64-linux-android)
@@ -63,9 +66,6 @@ add_library(${_target} STATIC ${helloworld_SRC})
 
 target_compile_options(common INTERFACE -std=gnu++20 -fexceptions
                                         -stdlib=libc++)
-
-set(VS_NdkRoot
-    C:/Users/jdu/Downloads/android-ndk-r21b-windows-x86_64/android-ndk-r21b)
 
 target_include_directories(
   common

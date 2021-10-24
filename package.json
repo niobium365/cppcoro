@@ -6,7 +6,7 @@
 		"node": ">= 0.10.12"
 	},
 	"optionalDependencies": {
-		"@jd/lazy_make": "c:/ws/bbbb/lazy_make"
+		"@jd/lazy_make": "/ws/bbbb/lazy_make"
 	},
 	"dependencies": {
 		"@jd/lazy_make": "^1.0.22"
