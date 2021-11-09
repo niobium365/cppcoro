@@ -12,6 +12,8 @@ add_compile_options(
   -Wextra
   -Wno-unused-parameter
   -frtti
+  -fPIC
+  -fpic
   -pthread)
 set(CMAKE_C_COMPILER_WORKS 1)
 set(CMAKE_CXX_COMPILER_WORKS 1)
@@ -28,11 +30,11 @@ set(CMAKE_RUNTIME_OUTPUT_DIRECTORY
 set(VS_NdkRoot
     $ENV{CMAKE_TOOLCHAIN_DIR})
 
-set(CMAKE_TOOLCHAIN_FILE ${VS_NdkRoot}/cross.cmake)
+set(CMAKE_C_COMPILER clang-10)
+set(CMAKE_CXX_COMPILER clang++-10)
+# set(CMAKE_TOOLCHAIN_FILE ${VS_NdkRoot}/cross.cmake)
 
 if(AT_BIT EQUAL 64)
-  add_compile_options(-m64 --target=aarch64-linux-android)
-  add_link_options(-m64 --target=aarch64-linux-android)
 else()
   add_compile_options(-m32 --target=armv7a-linux-androideabi -mcmodel=medium)
   add_link_options(-m32 --target=armv7a-linux-androideabi)
@@ -69,9 +71,7 @@ target_compile_options(common INTERFACE -std=gnu++20 -fexceptions
 
 target_include_directories(
   common
-  INTERFACE ../../include ${VS_NdkRoot}/sources/cxx-stl/llvm-libc++/include
-            ${VS_NdkRoot}/sources/cxx-stl/llvm-libc++abi/include
-            ${VS_NdkRoot}/sources/android/support/include)
+  INTERFACE ../../include)
 
 # https://gitlab.kitware.com/cmake/cmake/-/issues/15415
 
